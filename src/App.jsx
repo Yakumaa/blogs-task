@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { Button } from "./components/ui/button"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+
 // import './App.css'
 import Blog from './components/BlogList'
 import blogService from './services/blog'
@@ -176,30 +186,38 @@ function App() {
 
     <BrowserRouter>
       <div className="container mx-auto p-3">
-        <nav className="mb-4 ">
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className="text-blue-500 hover:text-blue-700">
-                Home
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <Link to='/' legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Home
+                </NavigationMenuLink>
               </Link>
-            </li>
-            <li>
-              <Link to="/blogs" className="text-blue-500 hover:text-blue-700">
-                Blogs
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to='/blogs' legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Blogs
+                </NavigationMenuLink>
               </Link>
-            </li>
-            <li>
-              <Link to="/authors" className="text-blue-500 hover:text-blue-700">
-                Authors
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to='/authors' legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Authors
+                </NavigationMenuLink>
               </Link>
-            </li>
-            <li>
-              <Link to="/login" className="text-blue-500 hover:text-blue-700">
-                Login
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to='/login' legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Login
+                </NavigationMenuLink>
               </Link>
-            </li>
-          </ul>
-        </nav>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <Routes>
           <Route path="/blogs" element={<BlogPage />} />
