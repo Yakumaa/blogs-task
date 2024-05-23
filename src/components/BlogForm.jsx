@@ -58,6 +58,7 @@ const BlogForm = ({ onBlogSubmit, initialBlog = null, onCancel }) => {
           onChange={(e) => setContent(e.target.value)}
           required
         ></textarea>
+        {/* TODO: Use author name instead */}
         <label className="block text-sm font-semibold">Author ID</label>
         <input
           className="w-full p-2 border border-gray-300 rounded"

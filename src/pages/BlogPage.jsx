@@ -12,6 +12,7 @@ import {
 import { Button } from "../components/ui/button"
 import BlogList from '../components/BlogList';
 import BlogForm from '../components/BlogForm';
+import BlogDetails from '../components/BlogDetails';
 import blogService from '../services/blog';
 
 const BlogPage = () => {
@@ -19,6 +20,8 @@ const BlogPage = () => {
   const [editingBlog, setEditingBlog] = useState(null);
   const [deletingBlog, setDeletingBlog] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showBlogDetails, setShowBlogDetails] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -79,12 +82,21 @@ const BlogPage = () => {
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
     setEditingBlog(null);
+    setShowBlogDetails(false);
+    setSelectedBlog(null);
   };
 
   const handleCancelForm = () => {
     setShowCreateForm(false);
     setEditingBlog(null);
     setDeletingBlog(null);
+    setShowBlogDetails(false);
+    setSelectedBlog(null);
+  };
+
+  const handleViewBlogDetails = (blog) => {
+    setSelectedBlog(blog);
+    setShowBlogDetails(true);
   };
 
   return (
@@ -131,10 +143,19 @@ const BlogPage = () => {
         </Dialog>
       )}
 
+      {showBlogDetails && selectedBlog && (
+        <Dialog open={showBlogDetails} onOpenChange={handleCancelForm}>
+          <DialogContent>
+            <BlogDetails blogId={selectedBlog._id} />
+          </DialogContent>
+        </Dialog>
+      )}
+
       <BlogList 
         blogs={blogs} 
         onEditBlog={handleEditBlog}
         onDeleteBlog={handleDeleteBlog}
+        onViewBlogDetails={handleViewBlogDetails}
       />
     </div>
   );

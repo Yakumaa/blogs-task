@@ -21,4 +21,27 @@ const deleteBlog = async (id) => {
   return response.data
 }
 
-export default { getAllBlogs, createBlog, updateBlog, deleteBlog }
+const getBlogDetails = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}`);
+  return response.data;
+}
+
+const likeBlog = async (id) => {
+  const response = await axios.get(`${baseUrl}/likes/${id}`);
+  return response.data;
+}
+
+const dislikeBlog = async (id) => {
+  const response = await axios.get(`${baseUrl}/likes/${id}`);
+  return response.data;
+}
+
+export default { 
+  getAllBlogs, 
+  createBlog, 
+  updateBlog, 
+  deleteBlog,
+  getBlogDetails,
+  likeBlog,
+  dislikeBlog
+}

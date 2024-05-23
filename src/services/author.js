@@ -6,6 +6,11 @@ const getAllAuthors = async () => {
   return response.data;
 };
 
+const getAuthorById = async (id) => {
+  const response = await axios.get(`${baseUrl}/${id}`);
+  return response.data;
+};
+
 const createAuthor = async (newObject) => {
   const response = await axios.post(baseUrl, newObject);
   console.log('response', response.data)
@@ -23,4 +28,4 @@ const deleteAuthor = async (id) => {
   return response.data;
 };
 
-export default { getAllAuthors, createAuthor, updateAuthor, deleteAuthor };
+export default { getAllAuthors, getAuthorById, createAuthor, updateAuthor, deleteAuthor };
